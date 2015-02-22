@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using Client.Annotations;
 using Client.ViewModel;
+using Entities.Entities;
 
 namespace Client
 {
@@ -11,10 +15,8 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
-            CurrentViewModel = new LoginViewModel();
-            DataContext = CurrentViewModel;
+            DataContext = new MainViewModel(this);
         }
 
-        public ViewModelBase CurrentViewModel { get; set; }
     }
 }

@@ -1,32 +1,59 @@
 ﻿using System.Collections.ObjectModel;
-using Entities.Database;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using Entities.Entities;
 
 namespace Client.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private string testString;
 
-        public MainViewModel()
+        public MainViewModel(Window window)
         {
-            var context = new UserAccountContext();
-            Users = new ObservableCollection<User>(context.Users);
+            Window = window;
+            //ChangeToLoginView();
+            User user = new User()
+            {
+                Name = "Hansi",
+                Workspaces = new Collection<Workspace>()
+                {
+                    new Workspace() {Name = "Test", ConnectionString = "ConnectionString"},
+                    new Workspace() {Name = "Worke", ConnectionString = "Something"}
+                }
+            };
+            ChangeToWorkspacesView(user);
         }
 
-        public string TestString
+        private Window Window { get; set; }
+
+        private ViewModelBase currentViewModel;
+
+        public ViewModelBase CurrentViewModel
         {
-            get { return testString; }
+            get { return currentViewModel; }
             set
             {
-                if (value != testString)
+                if (currentViewModel != value)
                 {
-                    testString = value;
+                    currentViewModel = value;
+                    OnPropertyChanged();
                 }
             }
         }
 
+        private void ChangeToLoginView()
+        {
+            var loginViewModel = new LoginViewModel();
+            loginViewModel.CancelEvent += Window.Close;
+            loginViewModel.LoginSuccessfullEvent += ChangeToWorkspacesView;
+            CurrentViewModel = loginViewModel;
+        }
 
-        public ObservableCollection<User> Users { get; set; }
+        private void ChangeToWorkspacesView(User user)
+        {
+            CurrentViewModel = new WorkspacesViewModel(user);
+        }
+
     }
 }

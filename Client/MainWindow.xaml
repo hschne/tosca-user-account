@@ -9,11 +9,12 @@
             <view:LoginView />
         </DataTemplate>
         
-        <DataTemplate DataType="{x:Type vm:MainViewModel}">
-            <view:MainView></view:MainView>
+        <DataTemplate DataType="{x:Type vm:WorkspacesViewModel}">
+            <view:WorkspacesView></view:WorkspacesView>
         </DataTemplate> 
     </Window.Resources>
-    
-    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding }"></ContentPresenter>
+    <Grid>
+        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Path=CurrentViewModel}"></ContentPresenter>
+    </Grid>
 
 </Window>

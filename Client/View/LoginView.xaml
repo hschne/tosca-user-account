@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="299" d:DesignWidth="323">
+             d:DesignHeight="147" d:DesignWidth="239">
     <Grid >
-        <Label Content="Username" HorizontalAlignment="Left" Margin="45,127,0,0" VerticalAlignment="Top" Width="65" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="115,127,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="163"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="45,160,0,0" VerticalAlignment="Top" Width="65" Height="23"/>
-        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" Margin="115,160,0,0" VerticalAlignment="Top" Width="163" Height="23"/>
-        <Button Content="Login" Command="{Binding Path=LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}" HorizontalAlignment="Left" Margin="45,249,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Cancel" Command="{Binding Path=CancelCommand}" HorizontalAlignment="Left" Margin="203,249,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="3,2,0,0" VerticalAlignment="Top" Width="65" Height="23"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="73,2,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="163"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="3,35,0,0" VerticalAlignment="Top" Width="65" Height="23"/>
+        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" Margin="73,35,0,0" VerticalAlignment="Top" Width="163" Height="23"/>
+        <Button Content="Login" Command="{Binding Path=LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}" HorizontalAlignment="Left" Margin="3,124,0,0" VerticalAlignment="Top" Width="75" Height="20"/>
+        <Button Content="Cancel" Command="{Binding Path=CancelCommand}" HorizontalAlignment="Left" Margin="161,124,0,0" VerticalAlignment="Top" Width="75" Height="20"/>
     </Grid>
 </UserControl>

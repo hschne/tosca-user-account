@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Client.View.WorkspacesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignWidth="447" d:DesignHeight="268">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding User}"
+                   VerticalAlignment="Top" Height="32" Width="67" />
+        <ListBox ItemsSource="{Binding Workspaces}" HorizontalAlignment="Left" Height="211" Margin="0,47,0,0"
+                 VerticalAlignment="Top" Width="437">
+            <ListBox.ItemTemplate>
+                <DataTemplate >
+                    <WrapPanel>
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Connection String: " />
+                        <TextBlock Text="{Binding ConnectionString}" FontWeight="Bold" />
+                        <Button Content="Create" Command="{Binding DownloadWorkspaceCommand}" ></Button>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</UserControl>

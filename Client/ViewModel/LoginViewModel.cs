@@ -12,7 +12,7 @@ namespace Client.ViewModel
     {
         public delegate void Cancel();
 
-        public delegate void LoginSuccessfull();
+        public delegate void LoginSuccessfull(User user);
 
         private string username;
 
@@ -52,9 +52,10 @@ namespace Client.ViewModel
         {
             var context = new UserAccountContext();
             var passwordBox = (PasswordBox)parameter;
+            User currentUser = null;
             try
             {
-                User currentUser = context.Users.First(x => x.Name == username);
+                currentUser = context.Users.First(x => x.Name == username);
                 if (currentUser.Password != passwordBox.Password) throw new ArgumentException();
             }
             catch (Exception)
@@ -64,7 +65,7 @@ namespace Client.ViewModel
             }
             if (LoginSuccessfullEvent != null)
             {
-                LoginSuccessfullEvent();
+                LoginSuccessfullEvent(currentUser);
             }
         }
     }
