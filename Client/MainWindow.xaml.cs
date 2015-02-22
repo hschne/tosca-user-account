@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Client.ViewModel;
 using Entities.Database;
 using Entities.Entities;
 
@@ -11,10 +12,13 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainViewModel MainViewModel { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            TestConnection();
+            MainViewModel = new MainViewModel();
+            DataContext = MainViewModel;
         }
 
         public void TestConnection()
