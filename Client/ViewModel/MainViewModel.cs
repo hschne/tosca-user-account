@@ -12,7 +12,6 @@ namespace Client.ViewModel
         {
             var context = new UserAccountContext();
             Users = new ObservableCollection<User>(context.Users);
-            TestString = "ASDFASd";
         }
 
         public string TestString
