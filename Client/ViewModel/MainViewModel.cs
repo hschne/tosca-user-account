@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using Entities.Entities;
 
+using Tricentis.TCAPI;
+
 namespace Client.ViewModel
 {
     public class MainViewModel : ViewModelBase
@@ -12,17 +14,21 @@ namespace Client.ViewModel
         public MainViewModel(Window window)
         {
             Window = window;
+            TCAPI.CreateInstance();
             //ChangeToLoginView();
-            User user = new User()
-            {
+            User user = new User() {
                 Name = "Hansi",
                 Workspaces = new Collection<Workspace>()
                 {
-                    new Workspace() {Name = "Test", ConnectionString = "ConnectionString"},
+                    new Workspace() {Name = "Test", ConnectionString = "Server=mssqlserv1.tricentis.com;Database=SOA;Uid=SOA_User;Pwd=fk.N2#5Q"},
                     new Workspace() {Name = "Worke", ConnectionString = "Something"}
                 }
             };
             ChangeToWorkspacesView(user);
+        }
+
+        ~MainViewModel() {
+            TCAPI.Instance.Close();
         }
 
         private Window Window { get; set; }

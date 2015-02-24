@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+
+using Client.Tricentis;
+
 using Entities.Entities;
 
 namespace Client.ViewModel
@@ -28,7 +31,8 @@ namespace Client.ViewModel
 
         private void CreateWorkspaceOnDisk()
         {
-            MessageBox.Show("Workspace Created!");
+            WorkspaceFactory factory = new WorkspaceFactory();
+            factory.CreateWorkspace(Workspace);
         }
     }
 }
