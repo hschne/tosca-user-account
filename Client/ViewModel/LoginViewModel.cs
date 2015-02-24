@@ -58,7 +58,7 @@ namespace Client.ViewModel
                 currentUser = context.Users.First(x => x.Name == username);
                 if (currentUser.Password != passwordBox.Password) throw new ArgumentException();
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 passwordBox.Clear();
                 MessageBox.Show("Login failed!");

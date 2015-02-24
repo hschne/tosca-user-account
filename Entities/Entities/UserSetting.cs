@@ -4,6 +4,8 @@
     {
         public int UserSettingID { get; set; }
 
-        public string FilePath { get; set; }
+        public string Name { get; set; }
+
+        public byte[] Content { get; set; }
     }
 }

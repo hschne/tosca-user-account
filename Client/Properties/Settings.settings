@@ -5,5 +5,8 @@
     <Setting Name="WorkspaceDirectory" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\Tosca_Projects\Tosca_Workspaces</Value>
     </Setting>
+    <Setting Name="SettingsDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\ProgramData\TRICENTIS\TOSCA Testsuite\7.0.0\Settings\XML</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

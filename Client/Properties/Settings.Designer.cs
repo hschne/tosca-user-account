@@ -31,5 +31,17 @@ namespace Client.Properties {
                 return ((string)(this["WorkspaceDirectory"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ProgramData\\TRICENTIS\\TOSCA Testsuite\\7.0.0\\Settings\\XML")]
+        public string SettingsDirectory {
+            get {
+                return ((string)(this["SettingsDirectory"]));
+            }
+            set {
+                this["SettingsDirectory"] = value;
+            }
+        }
     }
 }

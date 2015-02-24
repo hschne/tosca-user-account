@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
+using System.Data.Entity;
 using System.Runtime.CompilerServices;
 using System.Windows;
+
+using Entities.Database;
 using Entities.Entities;
 
 using Tricentis.TCAPI;
@@ -15,16 +19,8 @@ namespace Client.ViewModel
         {
             Window = window;
             TCAPI.CreateInstance();
-            //ChangeToLoginView();
-            User user = new User() {
-                Name = "Hansi",
-                Workspaces = new Collection<Workspace>()
-                {
-                    new Workspace() {Name = "Test", ConnectionString = "Server=mssqlserv1.tricentis.com;Database=SOA;Uid=SOA_User;Pwd=fk.N2#5Q"},
-                    new Workspace() {Name = "Worke", ConnectionString = "Something"}
-                }
-            };
-            ChangeToWorkspacesView(user);
+            Database.SetInitializer(new UserAccountInitializer());
+            ChangeToLoginView();
         }
 
         ~MainViewModel() {

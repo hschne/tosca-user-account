@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\UserAccountContext.cs" />
+    <Compile Include="Database\UserAccountInitializer.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserSetting.cs" />
     <Compile Include="Entities\Workspace.cs" />
