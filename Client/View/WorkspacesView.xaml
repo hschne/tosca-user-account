@@ -8,7 +8,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Workspaces for" VerticalAlignment="Top" Height="32" Width="94"/>
         <TextBlock HorizontalAlignment="Left" Margin="109,10,0,0" TextWrapping="Wrap" Text="{Binding User}"
                    VerticalAlignment="Top" Height="32" Width="67" />
-        <ListBox ItemsSource="{Binding Workspaces}" HorizontalAlignment="Left" Height="211" Margin="0,47,0,0"
+        <ListBox IsEnabled="{Binding ApiInitialized}" ItemsSource="{Binding Workspaces}" HorizontalAlignment="Left" Height="211" Margin="0,47,0,0"
                  VerticalAlignment="Top" Width="437">
             <ListBox.ItemTemplate>
                 <DataTemplate >
@@ -23,8 +23,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Upload" HorizontalAlignment="Left" Margin="282,7,0,0" Command="{Binding UploadSettingsCommand}" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Download" HorizontalAlignment="Left" Margin="362,7,0,0" Command="{Binding DownloadSettingsCommand}" VerticalAlignment="Top" Width="75"/>
+        <Button IsEnabled="{Binding ApiInitialized}" Content="Upload" HorizontalAlignment="Left" Margin="282,7,0,0" Command="{Binding UploadSettingsCommand}" VerticalAlignment="Top" Width="75"/>
+        <Button IsEnabled="{Binding ApiInitialized}" Content="Download" HorizontalAlignment="Left" Margin="362,7,0,0" Command="{Binding DownloadSettingsCommand}" VerticalAlignment="Top" Width="75"/>
 
 
     </Grid>

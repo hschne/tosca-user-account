@@ -21,6 +21,7 @@ namespace Client.ViewModel
         public WorkspacesViewModel(User user)
         {
             User = user.Name;
+            ApiInitialized = false;
             Factory = new UserSettingsFactory(user);
             Workspaces = CreateObservableCollection(user.Workspaces);
             DownloadSettingsCommand = new RelayCommand(param => Factory.DownloadSetting() );
@@ -29,7 +30,14 @@ namespace Client.ViewModel
 
         public String User { get; set; }
 
+        public bool ApiInitialized { get; set; }
+
         public ObservableCollection<WorkspaceViewModel> Workspaces { get; set; }
+
+        public void SetApiInitialzed() {
+            ApiInitialized = true;
+            OnPropertyChanged("ApiInitialized");
+        }
 
         private ObservableCollection<WorkspaceViewModel> CreateObservableCollection(IEnumerable<Workspace> workspaces)
         {
