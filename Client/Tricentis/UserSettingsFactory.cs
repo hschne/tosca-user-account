@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 using Entities.Database;
 using Entities.Entities;
@@ -16,7 +12,6 @@ namespace Client.Tricentis {
 
         public UserSettingsFactory( User user ) {
             User = user;
-
         }
 
         public void UploadSetting() {
@@ -30,7 +25,7 @@ namespace Client.Tricentis {
 
         public void DownloadSetting() {
             byte[] content = User.UserSetting.Content;
-            if (User.UserSetting != null && content !=null) {
+            if (User.UserSetting != null && content != null) {
                 String name = User.UserSetting.Name;
                 var settingsContent = Encoding.Default.GetString(User.UserSetting.Content);
                 String directory = Properties.Settings.Default.SettingsDirectory;
@@ -40,7 +35,7 @@ namespace Client.Tricentis {
                 }
                 File.WriteAllText(file, settingsContent);
             }
-            
         }
+
     }
 }

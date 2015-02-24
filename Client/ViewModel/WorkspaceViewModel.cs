@@ -1,18 +1,15 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 using Client.Tricentis;
 
 using Entities.Entities;
 
-namespace Client.ViewModel
-{
-    public class WorkspaceViewModel : ViewModelBase
-    {
+namespace Client.ViewModel {
+    public class WorkspaceViewModel : ViewModelBase {
+
         private WorkspaceFactory WorkspaceFactory { get; set; }
 
-        public WorkspaceViewModel(Workspace workspace)
-        {
+        public WorkspaceViewModel( Workspace workspace ) {
             Workspace = workspace;
             WorkspaceFactory = new WorkspaceFactory();
             WorkspaceFactory.ActionFinishedEvent += () => { ProcessingAction = false; };
@@ -31,20 +28,22 @@ namespace Client.ViewModel
 
         public ICommand DownloadWorkspaceCommand { get; set; }
 
-        public string Name
-        {
-            get { return Workspace.Name; }
+        public string Name {
+            get {
+                return Workspace.Name;
+            }
         }
 
-        public string ConnectionString
-        {
-            get { return Workspace.ConnectionString; }
+        public string ConnectionString {
+            get {
+                return Workspace.ConnectionString;
+            }
         }
 
         private void CreateWorkspaceOnDisk() {
             WorkspaceFactory.CreateWorkspace(Workspace);
             ProcessingAction = true;
-
         }
+
     }
 }
