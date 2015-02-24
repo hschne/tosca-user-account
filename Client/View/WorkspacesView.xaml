@@ -18,8 +18,8 @@
                         <TextBlock Text=", " />
                         <TextBlock Text="Connection String: " />
                         <TextBlock Text="{Binding ConnectionString}" FontWeight="Bold" />
-                        <Button Content="Create" Command="{Binding DownloadWorkspaceCommand}" ></Button>
-                        <Button Content="Open" Command="{Binding OpenWorkspaceCommand}" ></Button>
+                        <Button Content="Create" Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}"></Button>
+                        <Button Content="Open" Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" ></Button>
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

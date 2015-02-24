@@ -12,12 +12,22 @@ namespace Client.ViewModel {
         public WorkspaceViewModel( Workspace workspace ) {
             Workspace = workspace;
             WorkspaceFactory = new WorkspaceFactory();
-            WorkspaceFactory.ActionFinishedEvent += () => { ProcessingAction = false; };
+            WorkspaceFactory.ActionFinishedEvent += () => {
+                ProcessingAction = false;
+                OnPropertyChanged("CreateWorkspaceEnabled");
+                OnPropertyChanged("OpenWorkspaceEnabled");
+            };
             DownloadWorkspaceCommand = new RelayCommand(param => CreateWorkspaceOnDisk());
             OpenWorkspaceCommand = new RelayCommand(param => WorkspaceFactory.OpenWorkspace(workspace));
         }
 
-        public bool WorkspaceExists {
+        public bool CreateWorkspaceEnabled {
+            get {
+                return !WorkspaceFactory.WorkspaceExists(Workspace.Name);
+            }
+        }
+
+        public bool OpenWorkspaceEnabled {
             get {
                 return WorkspaceFactory.WorkspaceExists(Workspace.Name);
             }
