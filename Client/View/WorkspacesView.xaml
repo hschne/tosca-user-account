@@ -12,13 +12,14 @@
                  VerticalAlignment="Top" Width="437">
             <ListBox.ItemTemplate>
                 <DataTemplate >
-                    <WrapPanel>
+                    <WrapPanel >
                         <TextBlock Text="Name: " />
                         <TextBlock Text="{Binding Name}" FontWeight="Bold" />
                         <TextBlock Text=", " />
                         <TextBlock Text="Connection String: " />
                         <TextBlock Text="{Binding ConnectionString}" FontWeight="Bold" />
                         <Button Content="Create" Command="{Binding DownloadWorkspaceCommand}" ></Button>
+                        <Button Content="Open" Command="{Binding OpenWorkspaceCommand}" ></Button>
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

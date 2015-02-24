@@ -14,6 +14,7 @@ namespace Client.ViewModel {
             WorkspaceFactory = new WorkspaceFactory();
             WorkspaceFactory.ActionFinishedEvent += () => { ProcessingAction = false; };
             DownloadWorkspaceCommand = new RelayCommand(param => CreateWorkspaceOnDisk());
+            OpenWorkspaceCommand = new RelayCommand(param => WorkspaceFactory.OpenWorkspace(workspace));
         }
 
         public bool WorkspaceExists {
@@ -27,6 +28,8 @@ namespace Client.ViewModel {
         private Workspace Workspace { get; set; }
 
         public ICommand DownloadWorkspaceCommand { get; set; }
+
+        public ICommand OpenWorkspaceCommand { get; set; }
 
         public string Name {
             get {
