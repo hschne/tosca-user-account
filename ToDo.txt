@@ -1,4 +1,4 @@
-* Create website for adding users to workspaces
+* Create website for adding workspaces to users
 * Create demo concept 
 * Add demo materials (mutliple workspaces, speaking settings...)
 * Polish the UI!
