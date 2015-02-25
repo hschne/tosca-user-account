@@ -4,7 +4,7 @@
         xmlns:vm="clr-namespace:Client.ViewModel"
         xmlns:view="clr-namespace:Client.View"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Tosca Account Client" Height="350" Width="525">
+        Title="Tosca Account Client" Height="300" Width="350" MinWidth="350" MinHeight="200">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <view:LoginView />
@@ -14,8 +14,14 @@
         </DataTemplate>
 
     </Window.Resources>
-    <Grid>
-        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Path=CurrentViewModel}"></ContentPresenter>
-    </Grid>
+    <DockPanel>
+        <ContentPresenter DockPanel.Dock="Top"  Content="{Binding Path=CurrentViewModel}"></ContentPresenter>
+        <StatusBar VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Height="20" >
+            <StatusBarItem Content="Filler">
+            </StatusBarItem>
+        </StatusBar>
+    </DockPanel>
+    
 
+    
 </controls:MetroWindow>

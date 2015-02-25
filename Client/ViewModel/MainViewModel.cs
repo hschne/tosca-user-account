@@ -36,7 +36,7 @@ namespace Client.ViewModel {
         }
 
         ~MainViewModel() {
-            TCAPI.Instance.Close();
+            //TCAPI.Instance.Close();
         }
 
         private Window Window { get; set; }
@@ -72,7 +72,7 @@ namespace Client.ViewModel {
         public void InitializeApi() {
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate {
-                TCAPI.CreateInstance();
+                //TCAPI.CreateInstance();
             };
             worker.RunWorkerCompleted += delegate {
                 if (ApiInitializedEvent != null) {

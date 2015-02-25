@@ -3,30 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignWidth="447" d:DesignHeight="268">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Workspaces for" VerticalAlignment="Top" Height="32" Width="94"/>
-        <TextBlock HorizontalAlignment="Left" Margin="109,10,0,0" TextWrapping="Wrap" Text="{Binding User}"
-                   VerticalAlignment="Top" Height="32" Width="67" />
-        <ListBox IsEnabled="{Binding ApiInitialized}" ItemsSource="{Binding Workspaces}" HorizontalAlignment="Left" Height="211" Margin="0,47,0,0"
-                 VerticalAlignment="Top" Width="437">
+             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="260">
+
+    <StackPanel>
+        <DockPanel Height="59" >
+            <StackPanel Orientation="Horizontal"  Margin="10,10,10,10">
+                <Label Style="{DynamicResource DescriptionHeaderStyle}" HorizontalAlignment="Left" Content="Workspaces for" VerticalAlignment="Top" />
+                <Label Style="{DynamicResource DescriptionHeaderStyle}" HorizontalAlignment="Left" Content ="{Binding User}"
+                   VerticalAlignment="Top"/>
+            </StackPanel>
+            <StackPanel  Margin="10,10,10,10" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Style="{DynamicResource MetroCircleButtonStyle}" IsEnabled="{Binding ApiInitialized}"  HorizontalAlignment="Left"  Command="{Binding UploadSettingsCommand}" VerticalAlignment="Top" Height="35" Width="35">
+                    <Button.Content>
+                        <Rectangle 
+                    Width="16"
+                    Height="16"
+                    Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill"
+                                     Visual="{StaticResource appbar_disk_upload}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                </Button>
+                <Button  Style="{DynamicResource MetroCircleButtonStyle}" IsEnabled="{Binding ApiInitialized}"  HorizontalAlignment="Left"  Command="{Binding DownloadSettingsCommand}" VerticalAlignment="Top" Height="35" Width="35" >
+                    <Rectangle Width="16"
+                           Height="16"
+                           Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform"
+                                     Visual="{StaticResource appbar_download}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+
+        <ListBox HorizontalContentAlignment="Stretch" IsEnabled="{Binding ApiInitialized}" ItemsSource="{Binding Workspaces}" VerticalAlignment="Bottom" Margin="10,10,10,10">
             <ListBox.ItemTemplate>
                 <DataTemplate >
-                    <WrapPanel >
-                        <TextBlock Text="Name: " />
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                        <TextBlock Text=", " />
-                        <TextBlock Text="Connection String: " />
-                        <TextBlock Text="{Binding ConnectionString}" FontWeight="Bold" />
-                        <Button Content="Create" Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}"></Button>
-                        <Button Content="Open" Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" ></Button>
-                    </WrapPanel>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*">
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="70"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}" FontWeight="Bold" />
+                        <!--<Label Content=", " />
+                        <Label Content="Connection String: " />
+                        <Label Content="{Binding ConnectionString}" FontWeight="Bold" Width="200"/>-->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button  Content="Create" Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" MaxWidth="30"></Button>
+                            <Button  Content="Open" Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" MaxWidth="30" ></Button>
+                        </StackPanel>
+
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button IsEnabled="{Binding ApiInitialized}" Content="Upload" HorizontalAlignment="Left" Margin="282,7,0,0" Command="{Binding UploadSettingsCommand}" VerticalAlignment="Top" Width="75"/>
-        <Button IsEnabled="{Binding ApiInitialized}" Content="Download" HorizontalAlignment="Left" Margin="362,7,0,0" Command="{Binding DownloadSettingsCommand}" VerticalAlignment="Top" Width="75"/>
-
-
-    </Grid>
+    </StackPanel>
 </UserControl>
