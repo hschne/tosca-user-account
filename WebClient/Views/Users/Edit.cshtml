@@ -42,6 +42,14 @@
     </div>
 }
 
+@using (Html.BeginForm("AddWorkspace","Users"))
+{
+    @Html.HiddenFor(model => model.ID)
+    @Html.TextBox("name")
+    @Html.TextBox("connection")
+    <input type="submit" value="AddWorkspace" />
+}
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

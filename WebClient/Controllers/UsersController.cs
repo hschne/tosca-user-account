@@ -116,6 +116,22 @@ namespace WebClient.Controllers
             return RedirectToAction("Index");
         }
 
+        // POST: Users/Delete/5
+        [HttpPost, ActionName("AddWorkspace")]
+        public ActionResult AddWorkspace(int id,string name,string connection) {
+            User user = db.Users.Find(id);
+            Workspace workspace = new Workspace()
+            {
+                Name = name,
+                ConnectionString = connection
+            };
+            user.Workspaces.Add(workspace);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

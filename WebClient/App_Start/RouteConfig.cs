@@ -15,6 +15,10 @@ namespace WebClient {
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute("CreateWorkspaceForUser",
+                "{controller}/{action}/{id}/{name}/{connection}",
+                new { controller = "Users", action = "CreateWorkspace" }
+);
         }
     }
 }
