@@ -1,0 +1,4 @@
+* Create website for adding users to workspaces
+* Create demo concept 
+* Add demo materials (mutliple workspaces, speaking settings...)
+* Polish the UI!
