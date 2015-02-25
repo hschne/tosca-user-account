@@ -1,20 +1,21 @@
-﻿<Window x:Class="Client.MainWindow"
+﻿<controls:MetroWindow x:Class="Client.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:Client.ViewModel"
         xmlns:view="clr-namespace:Client.View"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Tosca Account Client" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <view:LoginView />
         </DataTemplate>
-        
         <DataTemplate DataType="{x:Type vm:WorkspacesViewModel}">
             <view:WorkspacesView></view:WorkspacesView>
-        </DataTemplate> 
+        </DataTemplate>
+
     </Window.Resources>
     <Grid>
         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Path=CurrentViewModel}"></ContentPresenter>
     </Grid>
 
-</Window>
+</controls:MetroWindow>

@@ -25,9 +25,12 @@ namespace Client.Tricentis {
         }
 
         public bool WorkspaceExists( string workspaceName ) {
-            IEnumerable<string> directories = Directory.EnumerateDirectories(WorkspaceDirectory);
-            if (directories.Contains(workspaceName)) {
-                return true;
+            if (Directory.Exists(WorkspaceDirectory))
+            {
+                IEnumerable<string> directories = Directory.EnumerateDirectories(WorkspaceDirectory);
+                if (directories.Contains(workspaceName)) {
+                    return true;
+                }
             }
             return false;
         }
