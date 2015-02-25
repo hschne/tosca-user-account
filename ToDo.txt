@@ -1,4 +1,7 @@
-* Create website for adding workspaces to users
+
+* In the client show local workspaces vs. workspaces in the database
+* Improve client UI
 * Create demo concept 
 * Add demo materials (mutliple workspaces, speaking settings...)
-* Polish the UI!
+* Create photoshop mock-up of commander with user account
+* 
