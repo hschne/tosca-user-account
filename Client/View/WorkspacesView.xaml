@@ -39,22 +39,39 @@
             </StackPanel>
         </DockPanel>
 
-        <ListBox HorizontalContentAlignment="Stretch" IsEnabled="{Binding ApiInitialized}" ItemsSource="{Binding Workspaces}" VerticalAlignment="Bottom" Margin="10,10,10,10">
+        <ListBox IsEnabled="{Binding ApiInitialized}" ItemsSource="{Binding Workspaces}" VerticalAlignment="Bottom" Margin="10,10,10,10">
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <Grid >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*">
-                            </ColumnDefinition>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition  Width="*" />
+                            <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <CheckBox IsEnabled="False" Grid.Column="0" Content="" IsChecked="{Binding OpenWorkspaceEnabled, Mode=OneWay}"></CheckBox>
-                        <Label Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Name}" FontWeight="Bold" />
+                        <CheckBox IsEnabled="False" Grid.Column="0" Content="" IsChecked="{Binding OpenWorkspaceEnabled, Mode=OneWay}" />
+                        <Label Grid.Column="1" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Content="{Binding Name}" FontWeight="Bold" />
                         
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button  Content="Create" Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" ></Button>
-                            <Button  Content="Open" Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" ></Button>
+                            <Button Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" Style="{DynamicResource MetroCircleButtonStyle}" Width="25" Height="25" >
+                                <Rectangle Width="16"
+                                        Height="16"
+                                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Uniform"
+                                     Visual="{StaticResource appbar_download}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                            <Button  Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" >
+                                <Rectangle Width="16"
+                                        Height="16"
+                                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Uniform"
+                                            Visual="{StaticResource appbar_folder_open}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
                         </StackPanel>
 
                     </Grid>

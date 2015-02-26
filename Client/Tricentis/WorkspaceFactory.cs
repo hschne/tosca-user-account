@@ -67,8 +67,8 @@ namespace Client.Tricentis {
 
         public void OpenWorkspace( Workspace workspace ) {
             string workspaceName = workspace.Name;
-            string thisWorkspaceDirectory = WorkspaceDirectory + "/" + workspaceName;
-            string workspacefile = Path.Combine(thisWorkspaceDirectory, workspace + ".tws");
+            string thisWorkspaceDirectory = WorkspaceDirectory + "\\" + workspaceName;
+            string workspacefile = Path.Combine(thisWorkspaceDirectory, workspace.Name + ".tws");
             Process process = new Process();
 
             // Stop the process from opening a new window
