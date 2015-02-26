@@ -1,11 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 using Entities.Database;
 using Entities.Entities;
+
+using MahApps.Metro.Controls.Dialogs;
 
 using Tricentis.TCAPI;
 
@@ -16,14 +19,14 @@ namespace Client.ViewModel {
 
         private ViewModelBase currentViewModel;
 
-        public MainViewModel( Window window ) {
+        public MainViewModel( MainWindow window ) {
             Window = window;
             InitializeApi();
             Database.SetInitializer(new UserAccountInitializer());
             ChangeToLoginView();
         }
 
-        private Window Window { get; set; }
+        private MainWindow Window { get; set; }
 
         public ViewModelBase CurrentViewModel {
             get {
@@ -44,9 +47,8 @@ namespace Client.ViewModel {
         }
 
         private void ChangeToLoginView() {
-            var loginViewModel = new LoginViewModel();
-            loginViewModel.CancelEvent += Window.Close;
-            loginViewModel.LoginSuccessfullEvent += ChangeToWorkspacesView;
+            var loginViewModel = new LoginViewModel(Window);
+            loginViewModel.LoginSuccessfullEvent += ChangeToWorkspacesView; ;
             CurrentViewModel = loginViewModel;
         }
 

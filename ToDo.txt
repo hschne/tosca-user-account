@@ -1,5 +1,4 @@
 
-* Create demo concept & Power point
-* Add demo materials (mutliple workspaces, speaking settings...)
+* Add demo materials (speaking settings...)
 * Create photoshop mock-up of commander with user account
 * Add status bar stuff

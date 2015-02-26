@@ -60,7 +60,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TCAPI">
+    <Reference Include="TCAPI, Version=8.4.0.19146, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\TCAPI.dll</HintPath>
     </Reference>
     <Reference Include="TCAPIObjects">

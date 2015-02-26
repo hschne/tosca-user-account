@@ -52,7 +52,7 @@
                         <Label Grid.Column="1" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Content="{Binding Name}" FontWeight="Bold" />
                         
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" Style="{DynamicResource MetroCircleButtonStyle}" Width="25" Height="25" >
+                            <Button Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" Width="25" Height="25" >
                                 <Rectangle Width="16"
                                         Height="16"
                                         Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
