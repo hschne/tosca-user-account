@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+
 using Entities.Database;
 using Entities.Entities;
 
-namespace WebClient.Controllers
-{
-    public class UsersController : Controller
-    {
+namespace WebClient.Controllers {
+    public class UsersController : Controller {
+
         private UserAccountContext db = new UserAccountContext();
 
         // GET: Users
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View(db.Users.ToList());
         }
 
         // GET: Users/Create
-        public ActionResult Create()
-        {
+        public ActionResult Create() {
             return View();
         }
 
@@ -32,10 +26,8 @@ namespace WebClient.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Password")] User user)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult Create( [Bind( Include = "ID,Name,Password" )] User user ) {
+            if (ModelState.IsValid) {
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -45,15 +37,12 @@ namespace WebClient.Controllers
         }
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
+        public ActionResult Edit( int? id ) {
+            if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
-            if (user == null)
-            {
+            if (user == null) {
                 return HttpNotFound();
             }
             return View(user);
@@ -64,10 +53,8 @@ namespace WebClient.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Password")] User user)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult Edit( [Bind( Include = "ID,Name,Password" )] User user ) {
+            if (ModelState.IsValid) {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,25 +63,22 @@ namespace WebClient.Controllers
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
+        public ActionResult Delete( int? id ) {
+            if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
-            if (user == null)
-            {
+            if (user == null) {
                 return HttpNotFound();
             }
             return View(user);
         }
 
         // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName( "Delete" )]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
+        public ActionResult DeleteConfirmed( int id ) {
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
@@ -102,28 +86,22 @@ namespace WebClient.Controllers
         }
 
         // POST: Users/Delete/5
-        [HttpPost, ActionName("AddWorkspace")]
-        public ActionResult AddWorkspace(int id,string name,string connection) {
+        [HttpPost]
+        [ActionName( "AddWorkspace" )]
+        public ActionResult AddWorkspace( int id, string name, string connection ) {
             User user = db.Users.Find(id);
-            Workspace workspace = new Workspace()
-            {
-                Name = name,
-                ConnectionString = connection
-            };
+            Workspace workspace = new Workspace { Name = name, ConnectionString = connection };
             user.Workspaces.Add(workspace);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
+        protected override void Dispose( bool disposing ) {
+            if (disposing) {
                 db.Dispose();
             }
             base.Dispose(disposing);
         }
+
     }
 }
