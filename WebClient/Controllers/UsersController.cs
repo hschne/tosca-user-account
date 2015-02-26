@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -80,6 +81,17 @@ namespace WebClient.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed( int id ) {
             User user = db.Users.Find(id);
+            List<Workspace> deleteWs = new List<Workspace>();
+            foreach (var workspace in user.Workspaces) {
+                deleteWs.Add(workspace);
+            }
+            UserSetting setting = user.UserSetting;
+            if (setting != null) {
+                db.Settings.Remove(setting);
+            }
+            foreach (var item in deleteWs) {
+                db.Workspaces.Remove(item);
+            }
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
