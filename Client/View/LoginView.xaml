@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="147" d:DesignWidth="239">
-    <Grid >
-        <Label Content="Username" HorizontalAlignment="Left" Margin="3,2,0,0" VerticalAlignment="Top" Width="65" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="73,2,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="163"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="3,35,0,0" VerticalAlignment="Top" Width="65" Height="23"/>
-        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" Margin="73,35,0,0" VerticalAlignment="Top" Width="163" Height="23"/>
+             d:DesignHeight="200" d:DesignWidth="239">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0" >
+        <Label Content="Username" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="65" Height="23"/>
+        <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Password" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="65" Height="23"/>
+        <PasswordBox Name="PasswordBox" HorizontalAlignment="Right" VerticalAlignment="Center" Width="160" Height="23"/>
         <Button Content="Login" Command="{Binding Path=LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}" HorizontalAlignment="Left" Margin="3,124,0,0" VerticalAlignment="Top" Width="75" Height="20"/>
         <Button Content="Cancel" Command="{Binding Path=CancelCommand}" HorizontalAlignment="Left" Margin="161,124,0,0" VerticalAlignment="Top" Width="75" Height="20"/>
     </Grid>
