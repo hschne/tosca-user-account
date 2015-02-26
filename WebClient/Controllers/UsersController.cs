@@ -100,9 +100,9 @@ namespace WebClient.Controllers {
         // POST: Users/Delete/5
         [HttpPost]
         [ActionName( "AddWorkspace" )]
-        public ActionResult AddWorkspace( int id, string name, string connection ) {
+        public ActionResult AddWorkspace( int id, string name, string type, string connection ) {
             User user = db.Users.Find(id);
-            Workspace workspace = new Workspace { Name = name, ConnectionString = connection };
+            Workspace workspace = new Workspace { Name = name, ConnectionString = connection, Type = type};
             user.Workspaces.Add(workspace);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -40,9 +40,11 @@
 
 <div>
     @using (Html.BeginForm("AddWorkspace", "Users")) {
+        var list = new[] { "SQLite", "SQL" };
         @Html.HiddenFor(model => model.ID)
         @Html.TextBox("name", "", "")
         @Html.TextBox("connection", "", "")
+        @Html.DropDownList("type", new SelectList(list), "Type")
         <input type="submit" value="AddWorkspace" />
     }
 </div>

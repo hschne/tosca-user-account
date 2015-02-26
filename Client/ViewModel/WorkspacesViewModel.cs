@@ -26,6 +26,8 @@ namespace Client.ViewModel {
 
         public ICommand UploadSettingsCommand { get; set; }
 
+        public ICommand RefreshCommand { get; set; }
+
         public String User { get; set; }
 
         public bool ApiInitialized { get; set; }

@@ -6,7 +6,7 @@ using System.Linq;
 using Entities.Entities;
 
 namespace Entities.Database {
-    public class UserAccountInitializer : DropCreateDatabaseAlways<UserAccountContext> {
+    public class UserAccountInitializer : CreateDatabaseIfNotExists<UserAccountContext> {
 
         public override void InitializeDatabase( UserAccountContext context ) {
             base.InitializeDatabase(context);
