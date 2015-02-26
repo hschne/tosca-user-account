@@ -4,7 +4,8 @@
         xmlns:vm="clr-namespace:Client.ViewModel"
         xmlns:view="clr-namespace:Client.View"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Tosca Account Client" Height="300" Width="350" MinWidth="350" MinHeight="200">
+        Title="Tosca Account Client" Height="300" Width="350" MinWidth="350" MinHeight="200"
+                      Icon="Resources/Tosca_Commander_Icon_48x48.ico">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <view:LoginView />

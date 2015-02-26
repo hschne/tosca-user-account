@@ -69,6 +69,5 @@ namespace Client.ViewModel {
             };
             worker.RunWorkerAsync();
         }
-
     }
 }
