@@ -1,5 +1,4 @@
 
-* Improve Login UI
 * Create demo concept & Power point
 * Add demo materials (mutliple workspaces, speaking settings...)
 * Create photoshop mock-up of commander with user account
