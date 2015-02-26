@@ -7,7 +7,6 @@ using Entities.Entities;
 namespace Client.ViewModel {
     public class WorkspaceViewModel : ViewModelBase {
 
-        private WorkspaceFactory WorkspaceFactory { get; set; }
 
         public WorkspaceViewModel( Workspace workspace ) {
             Workspace = workspace;
@@ -16,10 +15,17 @@ namespace Client.ViewModel {
                 ProcessingAction = false;
                 OnPropertyChanged("CreateWorkspaceEnabled");
                 OnPropertyChanged("OpenWorkspaceEnabled");
+                ExistsLocally = true;
             };
             DownloadWorkspaceCommand = new RelayCommand(param => CreateWorkspaceOnDisk());
             OpenWorkspaceCommand = new RelayCommand(param => WorkspaceFactory.OpenWorkspace(workspace));
         }
+
+        private WorkspaceFactory WorkspaceFactory { get; set; }
+
+        private Workspace Workspace { get; set; }
+
+        public bool ExistsLocally { get; set; }
 
         public bool CreateWorkspaceEnabled {
             get {
@@ -35,7 +41,6 @@ namespace Client.ViewModel {
 
         public bool ProcessingAction { get; set; }
 
-        private Workspace Workspace { get; set; }
 
         public ICommand DownloadWorkspaceCommand { get; set; }
 

@@ -44,17 +44,17 @@
                 <DataTemplate >
                     <Grid >
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*">
                             </ColumnDefinition>
                             <ColumnDefinition Width="70"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" HorizontalAlignment="Left" Content="{Binding Name}" FontWeight="Bold" />
-                        <!--<Label Content=", " />
-                        <Label Content="Connection String: " />
-                        <Label Content="{Binding ConnectionString}" FontWeight="Bold" Width="200"/>-->
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button  Content="Create" Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" MaxWidth="30"></Button>
-                            <Button  Content="Open" Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" MaxWidth="30" ></Button>
+                        <CheckBox IsEnabled="False" Grid.Column="0" Content="" IsChecked="{Binding ExistsLocally}"></CheckBox>
+                        <Label Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Name}" FontWeight="Bold" />
+                        
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button  Content="Create" Command="{Binding DownloadWorkspaceCommand}" IsEnabled="{Binding CreateWorkspaceEnabled}" ></Button>
+                            <Button  Content="Open" Command="{Binding OpenWorkspaceCommand}" IsEnabled="{Binding OpenWorkspaceEnabled}" ></Button>
                         </StackPanel>
 
                     </Grid>

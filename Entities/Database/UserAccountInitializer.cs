@@ -9,19 +9,40 @@ namespace Entities.Database {
 
         public override void InitializeDatabase( UserAccountContext context ) {
             base.InitializeDatabase(context);
-            User user = new User {
-                Name = "tester1",
-                Password = "tester1",
+            User user1 = new User {
+                Name = "Alice",
+                Password = "Alice",
                 UserSetting = new UserSetting { Name = "Settings.xml" },
                 Workspaces =
                     new Collection<Workspace> {
                         new Workspace {
-                            Name = "Team Soa",
+                            Name = "TeamSoa",
+                            Type = "sql",
                             ConnectionString = "Server=mssqlserv1.tricentis.com;Database=SOA;Uid=SOA_User;Pwd=fk.N2#5Q"
                         }
                     }
             };
-            context.Users.AddOrUpdate(user);
+            User user2 = new User() {
+                Name = "Bill",
+                Password = "Bill",
+                UserSetting = new UserSetting { Name = "Settings.xml" },
+                Workspaces =
+                    new Collection<Workspace> {
+                        new Workspace {
+                            Name = "DemoRepo1",
+                            Type = "sqlite",
+                            ConnectionString = @"DataSource=C:\Tosca_Projects\Tosca_CommonRepositories\DemoRepo1\CommonRepository\CommonRepository.db;Version=3"
+                        },
+                        new Workspace {
+                            Name = "TDemoRepo2",
+                            Type = "sqlite",
+                            ConnectionString = @"DataSource=C:\Tosca_Projects\Tosca_CommonRepositories\DemoRepo2\CommonRepository\CommonRepository.db;Version=3"
+                        }
+                    }
+                     
+            };
+            context.Users.AddOrUpdate(user1);
+            context.Users.AddOrUpdate(user2);
             context.SaveChanges();
         }
 

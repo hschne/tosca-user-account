@@ -35,13 +35,24 @@ namespace Client.Tricentis {
             return false;
         }
 
+        public IEnumerable<string> LocalWorkspaces() {
+            IEnumerable<string> directories = Directory.EnumerateDirectories(WorkspaceDirectory);
+            return directories;
+        }
+
+
         public void CreateWorkspace( Workspace workspace ) {
             string workspaceName = workspace.Name;
             string thisWorkspaceDirectory = WorkspaceDirectory + "/" + workspaceName;
             Directory.CreateDirectory(thisWorkspaceDirectory);
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate {
-                Tcapi.CreateMultiuserWorkspaceWithSQLServerCommon(thisWorkspaceDirectory, workspace.ConnectionString);
+                if (workspace.Type.ToLowerInvariant() == "sql") {
+                    Tcapi.CreateMultiuserWorkspaceWithSQLServerCommon(thisWorkspaceDirectory, workspace.ConnectionString);
+                }
+                else if (workspace.Type.ToLowerInvariant() == "sqlite") {
+                    Tcapi.CreateMultiuserWorkspaceWithSQLITECommon(thisWorkspaceDirectory, workspace.ConnectionString);
+                }
                 Tcapi.CloseWorkspace();
             };
             worker.RunWorkerCompleted += delegate {
@@ -56,8 +67,7 @@ namespace Client.Tricentis {
         public void OpenWorkspace( Workspace workspace ) {
             string workspaceName = workspace.Name;
             string thisWorkspaceDirectory = WorkspaceDirectory + "/" + workspaceName;
-            //string workspacefile = Path.Combine(thisWorkspaceDirectory, workspace + ".tws");
-            string workspacefile = @"C:\Tosca_Projects\Tosca_Workspaces\Local\Local.tws";
+            string workspacefile = Path.Combine(thisWorkspaceDirectory, workspace + ".tws");
             Process process = new Process();
 
             // Stop the process from opening a new window

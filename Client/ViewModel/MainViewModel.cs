@@ -19,24 +19,11 @@ namespace Client.ViewModel {
             Window = window;
             InitializeApi();
             Database.SetInitializer(new UserAccountInitializer());
-            //ChangeToLoginView();
-             User user = new User {
-                Name = "tester1",
-                Password = "tester1",
-                UserSetting = new UserSetting { Name = "Settings.xml" },
-                Workspaces =
-                    new Collection<Workspace> {
-                        new Workspace {
-                            Name = "Team Soa",
-                            ConnectionString = "Server=mssqlserv1.tricentis.com;Database=SOA;Uid=SOA_User;Pwd=fk.N2#5Q"
-                        }
-                    }
-            };
-            ChangeToWorkspacesView(user);
+            ChangeToLoginView();
         }
 
         ~MainViewModel() {
-            //TCAPI.Instance.Close();
+            TCAPI.Instance.Close();
         }
 
         private Window Window { get; set; }
@@ -72,7 +59,7 @@ namespace Client.ViewModel {
         public void InitializeApi() {
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate {
-                //TCAPI.CreateInstance();
+                TCAPI.CreateInstance();
             };
             worker.RunWorkerCompleted += delegate {
                 if (ApiInitializedEvent != null) {
