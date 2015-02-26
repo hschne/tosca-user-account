@@ -13,7 +13,7 @@ namespace Client.ViewModel {
 
         public delegate void ApiInitialized();
 
-        public event ApiInitialized ApiInitializedEvent;
+        private ViewModelBase currentViewModel;
 
         public MainViewModel( Window window ) {
             Window = window;
@@ -22,13 +22,7 @@ namespace Client.ViewModel {
             ChangeToLoginView();
         }
 
-        ~MainViewModel() {
-            TCAPI.Instance.Close();
-        }
-
         private Window Window { get; set; }
-
-        private ViewModelBase currentViewModel;
 
         public ViewModelBase CurrentViewModel {
             get {
@@ -42,6 +36,12 @@ namespace Client.ViewModel {
             }
         }
 
+        public event ApiInitialized ApiInitializedEvent;
+
+        ~MainViewModel() {
+            TCAPI.Instance.Close();
+        }
+
         private void ChangeToLoginView() {
             var loginViewModel = new LoginViewModel();
             loginViewModel.CancelEvent += Window.Close;
@@ -51,16 +51,16 @@ namespace Client.ViewModel {
 
         private void ChangeToWorkspacesView( User user ) {
             WorkspacesViewModel workspacesViewModel = new WorkspacesViewModel(user);
+            if (TCAPI.Instance != null) {
+                workspacesViewModel.ApiInitialized = true;
+            }
             ApiInitializedEvent += () => { workspacesViewModel.SetApiInitialzed(); };
             CurrentViewModel = workspacesViewModel;
-
         }
 
         public void InitializeApi() {
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate {
-                TCAPI.CreateInstance();
-            };
+            worker.DoWork += delegate { TCAPI.CreateInstance(); };
             worker.RunWorkerCompleted += delegate {
                 if (ApiInitializedEvent != null) {
                     ApiInitializedEvent();

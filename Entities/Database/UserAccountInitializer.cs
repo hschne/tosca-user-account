@@ -29,20 +29,20 @@ namespace Entities.Database {
                 Workspaces =
                     new Collection<Workspace> {
                         new Workspace {
-                            Name = "DemoRepo1",
+                            Name = "Demo1",
                             Type = "sqlite",
-                            ConnectionString = @"DataSource=C:\Tosca_Projects\Tosca_CommonRepositories\DemoRepo1\CommonRepository\CommonRepository.db;Version=3"
+                            ConnectionString = @"C:\Tosca_Projects\Tosca_CommonRepositories\Demo1\CommonRepository\"
                         },
                         new Workspace {
-                            Name = "TDemoRepo2",
+                            Name = "Demo2",
                             Type = "sqlite",
-                            ConnectionString = @"DataSource=C:\Tosca_Projects\Tosca_CommonRepositories\DemoRepo2\CommonRepository\CommonRepository.db;Version=3"
+                            ConnectionString = @"C:\Tosca_Projects\Tosca_CommonRepositories\Demo2\CommonRepository\"
                         }
                     }
                      
             };
-            context.Users.AddOrUpdate(user1);
-            context.Users.AddOrUpdate(user2);
+            context.Users.Add(user1);
+            context.Users.Add(user2);
             context.SaveChanges();
         }
 

@@ -50,7 +50,10 @@ namespace Client.ViewModel {
             var passwordBox = (PasswordBox)parameter;
             User currentUser = null;
             try {
-                currentUser = context.Users.First(x => x.Name == username);
+                currentUser = context.Users.FirstOrDefault(x => x.Name == username);
+                if (currentUser == null) {
+                    throw new ArgumentException();
+                }
                 if (currentUser.Password != passwordBox.Password) {
                     throw new ArgumentException();
                 }
@@ -58,6 +61,7 @@ namespace Client.ViewModel {
             catch (ArgumentException) {
                 passwordBox.Clear();
                 MessageBox.Show("Login failed!");
+                return;
             }
             if (LoginSuccessfullEvent != null) {
                 LoginSuccessfullEvent(currentUser);

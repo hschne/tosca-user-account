@@ -15,7 +15,6 @@ namespace Client.ViewModel {
                 ProcessingAction = false;
                 OnPropertyChanged("CreateWorkspaceEnabled");
                 OnPropertyChanged("OpenWorkspaceEnabled");
-                ExistsLocally = true;
             };
             DownloadWorkspaceCommand = new RelayCommand(param => CreateWorkspaceOnDisk());
             OpenWorkspaceCommand = new RelayCommand(param => WorkspaceFactory.OpenWorkspace(workspace));
@@ -24,8 +23,6 @@ namespace Client.ViewModel {
         private WorkspaceFactory WorkspaceFactory { get; set; }
 
         private Workspace Workspace { get; set; }
-
-        public bool ExistsLocally { get; set; }
 
         public bool CreateWorkspaceEnabled {
             get {

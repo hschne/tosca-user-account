@@ -28,7 +28,7 @@ namespace Client.Tricentis {
             if (Directory.Exists(WorkspaceDirectory))
             {
                 IEnumerable<string> directories = Directory.EnumerateDirectories(WorkspaceDirectory);
-                if (directories.Contains(workspaceName)) {
+                if (directories.Contains(Path.Combine(WorkspaceDirectory,workspaceName))) {
                     return true;
                 }
             }
@@ -42,8 +42,9 @@ namespace Client.Tricentis {
 
 
         public void CreateWorkspace( Workspace workspace ) {
+            Tcapi = TCAPI.Instance;
             string workspaceName = workspace.Name;
-            string thisWorkspaceDirectory = WorkspaceDirectory + "/" + workspaceName;
+            string thisWorkspaceDirectory = WorkspaceDirectory + "\\" + workspaceName;
             Directory.CreateDirectory(thisWorkspaceDirectory);
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate {
@@ -51,7 +52,7 @@ namespace Client.Tricentis {
                     Tcapi.CreateMultiuserWorkspaceWithSQLServerCommon(thisWorkspaceDirectory, workspace.ConnectionString);
                 }
                 else if (workspace.Type.ToLowerInvariant() == "sqlite") {
-                    Tcapi.CreateMultiuserWorkspaceWithSQLITECommon(thisWorkspaceDirectory, workspace.ConnectionString);
+                    Tcapi.CreateMultiuserWorkspaceWithSQLITECommon(thisWorkspaceDirectory, workspace.ConnectionString,"Admin","");
                 }
                 Tcapi.CloseWorkspace();
             };

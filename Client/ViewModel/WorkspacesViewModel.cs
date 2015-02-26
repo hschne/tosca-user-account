@@ -39,12 +39,7 @@ namespace Client.ViewModel {
 
         private ObservableCollection<WorkspaceViewModel> CreateObservableCollection( IEnumerable<Workspace> workspaces ) {
             var result = new ObservableCollection<WorkspaceViewModel>();
-            var workspaceFactory = new WorkspaceFactory();
             foreach (WorkspaceViewModel viewModel in workspaces.Select(workspace => new WorkspaceViewModel(workspace))) {
-                viewModel.ExistsLocally = true;
-                if (!workspaceFactory.LocalWorkspaces().Contains(viewModel.Name)) {
-                    viewModel.ExistsLocally = false;
-                }
                 result.Add(viewModel);
             }
 
